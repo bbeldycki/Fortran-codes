@@ -1,0 +1,1 @@
+gfortran -Wall -mieee-fp -o maine ./const.f95 ./funkcjecarlsona.f95 ./pierwiastki.f95 ./calki.f95 ./funkcjejacobiego.f95 ./pierwiastkimu.f95 ./wspl.f95 ./phitekoncowe.f95 ./mukoncowe.f95 ./ukoncowe.f95 ./procgeo.f95 ./przesuniecia.f95 ./main.f95

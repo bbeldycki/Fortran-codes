@@ -1,0 +1,172 @@
+DOUBLE PRECISION:
+alfa - wspolrzedna pozioma na detektorze
+beta - wspolrzedna pionowa na detektorze
+l - moment pedu wzgledem osi Z
+l2 - kwadrat momentu pedu wzgledem osi Z
+q2 - stala Cartera
+almin - minimalna wartosc alfa dla ktorej obliczymy siatke 
+almax - maksymalna wartosc alfa dla ktorej obliczymy siatke
+bmin - maksymalna wartosc beta dla ktorej obliczymy siatke 
+bmax - maksymalna wartosc beta dla ktorej obliczymy siatke
+rmin - minimalna wartosc promienia dla ktorej obliczamy siatke
+rmax - maksymalna wartosc promienia dla ktorej obliczamy siatke
+rmaxi - maksymalna wartosc promienia dla ktorej obliczamy siatke ustalana w nieskonczonosci
+maxab - wartosc, ktora jest potrzebna do obliczenia zmiennej zr
+u1-4 - rzeczywiste pierwiastki rownania U(u), w kolejnosci rosnacej
+dgzw - dolna granica wybranych zmiennych wejsciowych (dla zmiennych a,a2 i l)
+zr - wyznacza wartosc odleglosci do obserwatora gdy dane wejsciowe wynosza nieskonczonosc, zr << 1, zeby
+zapewnic, ze czesc geodezyjnej z nieskonczonosci do nowego promienia "obserwatora" nie bedzie sie prawie roznic
+od przypadku policzonego w plaskiej czasoprzestrzeni. Dodatkowo zmienna czasowanie nie bedzie rozbiezna.
+zcu - znak calki po du, (zcu = du/dlambda)
+zcmu - znak calki do dmu
+ofset - to wartosc o ile rozni sie obliczone uk od up podanego jako input, znormalizowane przez 
+wielkosc kroku w u.
+uk - koncowa wartosci u (odwrotnosci promienia). (u = 1/r)
+muk - koncowa wartosc mu (coosinus kata wzgledem osi Z rotacji BH). (mu = cos(theta))
+up - poczatkowa wartosc u do obliczen (patrz nizej zmienne z pliku const.f95)
+mup - poczatkowa wartosc mu do obliczen (patrz nizej zmienne z pliku const.f95)
+upl - rozmiar horyzontu zdarzen (1/r_{horizon})
+umin - zmienna analogiczna do upl.
+iumin - zmienna analogicznie policzona do upl, umini = 1/umin.
+upom - wartosc u koncowego jezeli mamy doczynienia z turning pointami, jezeli nie ma turning point
+to ta zmienna bedzie rowna up.
+utp - wartosci u turning pointa, jezeli istnieje, jak nie to przypisana jest inna wartosc promienia
+z1 - element Z1 uzyty przy obliczaniu orbity marginalnie stabilnej
+z2 - element Z2 uzyty przy obliczaniu orbity marginalnie stabilnej
+rms - promien orbity marginalnie stabilnej
+ums - promien orbity marginalnie stabilnej z "lepszych zmiennych", 1/rms
+h1 - wartosc wspolczynnika dla przypadku np=6
+G - zmienna, ktora wystepuje w paru miejscach, a ja ja bede deklarowal w kazdej procedurze za kazdym razem
+du - krok calkowania w calkce po du
+kp - wartosc kata phi do policzenia parametrow zderzenia w nieskonczonosci gdy phi0=-pi/2
+muminus - fizyczny turning point 
+muplus - fizyczny turning point
+muv - odpowiednia wartosc mu dla ineksu k (to jest w specyficznej procedurze)
+uni - wartosc u (zmienna pomocnicza w petli) 
+cu - wartosc calki u tak, ze cu=cmu
+cmu - wartosc calki mu (tylko w "geokerr uzyte")
+rfdcup - wartosc rf istotna dla calki u dla czesci z up
+rfdcuk - wartosc rf istotna dla calki u dla czesci z uk
+rfdcmup - wartosc rf istotna dla calki mu dla czesci z mup
+rfdcmuk - wartosc rf istotna dla calki mu dla czesci z muk
+rfdcmut - wartosc rf istotna dla calki mu w czesci z turning pointamem
+cu0 - wartosc calki u pomiedzy up i istotnym turning pointem jak istnieje. Obliczane jesli turning point jest 
+obecny oraz elcaltp=.TRUE., inaczej jako wartosc zadana. Jezeli nie ma turning pointa to ignorowana jest ta zmienna
+cmu1 - wartosc calki po mu pomiedzy mup i muplus (obliczona gdy elcaltp=.TRUE., w przeciwnym wypadku zadana)
+cmu2 - wartosc calki po mu pomiedzy muf i muplus (obliczona gdy elcaltp=.TRUE., w przeciwnym wypadku zadana)
+cmu3 - wartosc calki po mu pomiedzy muminus i muplus (obliczona gdy elcaltp=.TRUE., w przeciwnym wypadku zadana)
+lambda - wartosc parametru afinicznego
+rd2r - wartosc rd dla zupelnej calki eliptycznej drugiego rodzaju
+rj3r - wartosc rj dla zupelnej calki eliptycznej trzeciego rodzaju
+ctuw1 - wartosc calki od up (czwarty wyraz z wzoru (47) Praca Dextera). Obliczona gdy elcaltp=.TRUE., jezeli nie ma fizycznych turning 
+pointow to zmienna zostanie pominieta. W przeciwnym przypadku dana jako input.
+ctuw2 - wartosc calki od up (trzeci wyraz z wzoru (47) Praca Dextera). Obliczona gdy elcaltp=.TRUE., jezeli nie ma fizycznych turning 
+pointow to zmienna zostanie pominieta. W przeciwnym przypadku dana jako input.
+ctuw3 - wartosc calki od up (pierwszy wyraz z wzoru (47) Praca Dextera). Obliczona gdy elcaltp=.TRUE., jezeli nie ma fizycznych turning 
+pointow to zmienna zostanie pominieta. W przeciwnym przypadku dana jako input.
+ctuw4 - wartosc calki od up (drugi wyraz z wzoru (47) Praca Dextera). Obliczona gdy elcaltp=.TRUE., jezeli nie ma fizycznych turning 
+pointow to zmienna zostanie pominieta. W przeciwnym przypadku dana jako input.
+rfr1pplus - wartosc rf dla zupelnej calki eliptycznej Legendrea pierwszego rodzaju liczona od mup do muplus
+rfr1kplus - wartosc rf dla zupelnej calki eliptycznej Legendrea pierwszego rodzaju liczona od muk do muplus
+rfr1 - wartosc rf dla zupelnej calki eliptycznej Legendrea pierwszego rodzaju
+cphimupplus - calka phimu od mup do muplus
+cphimukplus - calka phimu od muk do muplus
+cphimutp - calka phimu od muminus do muplus (pomiedzy turning pointami)
+ctmupplus - calka tmu od mup do muplus
+ctmukplus - calka tmu od muk do muplus
+ctmutp - calka tmu od -muplus do muplus     
+dtu - wartosc calki (wzor 47 Praca Dextera)
+dtmu - wartosc calki (wzor 45 Praca Dextera)
+dphiu - wartosc calki (wzor 46 Praca Dextera)
+dphimu - wartosc calki (wzor 48 Praca Dextera)
+Obie ponizsze zmienne oznaczaja pierwiastki (w formie postaci \mu^2) rownania M(\mu) w kolejnosci rosnacej
+mne -
+mpo -  
+
+
+INGETER:
+lpt - liczba punktow na trajektorii
+ltp - liczba trajektorii do policzenia
+!---------------------------------Siatka na detektorze------------------------------------!
+tsd - typ siatki na detektorze, jezeli tsd = 1 to siatka kolowa, a tsd = 2 to siatka kwadratowa
+!-------------------------------Przypadek siatki kolowej----------------------------------!
+lpro - liczba punktow rowno odleglych od siebie nrho=dsqrt(alfa^2+beta^2)
+lpphi - liczba punktow katowych do policzenia phi=atan(alpha/beta)
+!-----------------------------Przypadek siatki kwadratowej--------------------------------!
+lpro - liczba punktow rowno odleglych od siebie w osi poziomej (w alfach)
+lpphi - liczba punktow rowno odleglych od siebie w osi pionowej (w betach)
+!----------------------------Koniec Siatki na detektorze----------------------------------!
+np - numer przypadku rozwiazania
+lptz - zmienna, ktora zapamietuje wartosc lpt i ustawia ja w przypadku, gdyby sie mialo cos zmienic
+lpptp - zmienna, liczba punktow pomiedzy mup i muk
+kmax - zmienna petlowa (indeks)
+i - zmienna petlowa (indeks)
+ii - zmienna petlowa (indeks)
+j - zmienna petlowa (indeks)
+k - zmienna petlowa (indeks)
+kex - parametr przy zmiennych petlowych
+rtp - ilosc turning point w kierunku radialnym (czasami bedzie ustawiane 1, mimo, ze tak naprawde nie 
+bedzie turninag pointa w trajektorii), maksymlana ilosc turning poiontow w kierunku radialnym wynosi 1
+mutp - ilosc turning point w kierunku katowym 
+rtp1 - dodatkowa zmienna do radialnych turning pointow (wynosi 0, potrzebne czasami)
+mutp1 - dodatkowa zmienna do katowych turning pointow (ilosc turning pointow dla ineksu k przy zmiane zmiennej niezaleznej)
+ql - zmienna sterujaca (potrzebna przy inpucie)
+zst1 - zmienna sterujaca (w zaleznosci od wartosci mamy kilka opcji: a) [ 1) zmienne wejsciowe sa 
+wczytane z pliku, 2) zmienne wejsciowe sa podawane z terminala recznie] b) [ 1) uzyta bedzie procedura, ktora
+oblicza uk, 2) uzyta bedzie procedura, ktora oblicza muk ])
+maxlwr - (parametr) potrzebny do zapewnienia odpowiednio duzego rozmiaru tablicy do siatki (bedzie 
+uzyte w tablicach wgir(maxlwr) i pri(maxlwr))
+maxlet - (parametr) potrzebny do zapewnienia odpowiednio duzego rozmiaru tablice dla obliczonych wartosci
+zmiennych polozenie fotonow, zmiennej "czasowej", parametru wzdluz krzywej oraz do turning pointow (bedzie uzyte
+w tablicach uki(maxlet),muki(maxlet),tki(maxlet),phiki(maxlet),lambdaki(maxlet),mutpi(maxlet),rtpi(maxlet))
+NMAX - zmienna o takim samym dzialaniu jak maxlet, z ta roznica, ze jest tylko w goekerze.
+NS - zmienna, ktora pojawia sie w subroutynie GAULEG i oznacza rozmiar tablic do wag i promieni
+nplikt - "wskaznik" na plik wyjsciowy
+nplikn - "wskaznik" na plik wejsciowy
+nplike - zmienna sterujace, ktora ma na celu ewentualne zapisanie danych wejsciowych do pliku do pozniejszego
+uzytku
+xterm - zmienna sterujaca, ktora przekierowuje wyniki do termilu albo do pliku
+
+PARAMETRY:
+
+TABLICE INT:
+mutpi(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane ile turning pointow
+w kierunku mu przebieglismy dla i zmieniajaceg sie od 1 do lpt
+rtpi(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane ile turning pointow
+w kierunku u przebieglismy dla i zmieniajaceg sie od 1 do lpt
+
+TABLICE DOUBLE PRECISION:
+wgri(maxlwr) - tablica o rozmiarze maxlwr, w tej tablicy beda znajdowac sie wagi obliczone z 
+subroutyny (nazwa dopisac)
+pri(maxlwr) - tablica o rozmiarze maxlwr, w tej tablicy beda sie znajdowac wartosci promieni do 
+siatki (wiecej informacji bedzie w mainie zapisane w odpowiednim miejscu)
+uki(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane wartosci u trajektorii 
+dla i zmieniajacego sie od 1 do lpt
+muki(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane wartosci mu trajektorii 
+dla i zmieniajacego sie od 1 do lpt
+tki(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane wartosci t trajektorii
+dla i zmieniajaceg sie od 1 do lpt
+phiki(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane wartosci phi trajektorii
+dla i zmieniajacego sie od 1 do lpt
+lambdaki(maxlet) - tablica o rozmiarze maxlet, w tablicy tej beda zapisywane wartosci lambda
+trajektorii dla i zmieniajacego sie od 1 do lpt
+
+ZMIENNE CHARAKTERY:
+inplik - zmienna, nazwa pliku (dane wejsciowe)
+outplik - zmienna, nazwa pliku (dane wyjsciowe)
+saveplik - zmienna, nazwa pliku (do ktorego zapisujemy parametry wejsciowe, przypadek gdy 
+parametry wejsciowe podawane sa z terminalu), opcjonalne
+
+ZMIENNE LOGICZNE:
+phiit - zmienna logiczna (flaga), jezeli prawda to obliczamy tki(maxlet) i phiki(maxlet).
+czrad - zmienna logiczna, ktora mowi kiedy obliczamy uk czy muk
+zmzm - zmienna logiczna, ktora determinuje zmiane zmiennej niezaleznej (na mu) w poblizu radialnych turning pointow 
+elcaltp - zmienna logiczna (flaga), jezeli prawda to obliczamy 
+FIRSTPT -- Boolean variable. If .TRUE., RDC, RJC, TU01, TU02, TU03, TU04, TMU1, TMU3, PHIMU1 and PHIMU3 are computed. Otherwise, all are input. 
+pehate = PHT - zmienna logiczna (flaga), jezeli prawda to obliczamy
+
+Zmienne ktore zostana przeniesione do const.f95, w przypadku gdy bedziemy robic petle po tych zmiennych to przeniesiemy je do maina.
+a - spin = A
+inc - inlcination angle, mup = cos(inc)
+dist - distance to the observer, up = 1/dist
+

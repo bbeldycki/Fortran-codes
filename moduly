@@ -1,0 +1,37 @@
+Modul const (plik const.f95)
+W module zapisane sa zmienne globalne, parametry oraz wybrane stale fizyczne w jednostkach cgs.
+
+Modul procgeo (plik procgeo.f95)
+W module tym mamy procedure sterujaca (geodezyjna) obliczeniami trajektorii w zaleznosci od przypadku.
+
+Modul funkcjeelitycznepjacobiego (plik funkcjejacobiego.f95)
+W module tym znajduje sie procedura (sncndn) do obliczenia wartosci funkcji eliptycznych Jacobiego.
+
+Modul funkcjeCarlsona (plik funkcjecarlsona.f95)
+W module tym znajduja sie funkcje (rf,rd,rj,rc), ktore sa uzyte to policzenia wartosci calek eliptycznych
+pierwszego, drugiego i trzeciego rodzaju. Dodatkowo znajduje sie tez tam funkcja do obliczenia wartosci
+Inverse hyperbolic secant.
+
+Modul pierwiastkimu (plik pierwiastkimu.f95)
+W module tym znajduje sie procedura (rozwiazaniamu) do obliczania pierwiastkow rownania M(mu).
+
+Modul zmianazmiennej (plik wspl.f95)
+W module tym znajduje sie procedura (zmiennaniezalezna) do zamiany zmiennych, zeby moc poprawnie policzyc 
+liczbe turning pointow w kierunku katawych na calej trajektorii.
+
+Modul pierwiastki (plik pierwiastki.f95)
+W module tym znajduje sie procedury (gauleg,laguer,zroots). Procedury te sa zaczerpniete z Numerical Recipies 
+in Fortran Press et al (1992). Czesc z nich zostala przepisana w delikatnie zmienionej formie.
+
+Modul calki (plik calki.f95)
+W module tym znajduja sie procedury (calkieliptycznelegendra, calkiphiitniesymetryczne, calkiphiitsymetryczne,
+calkaimuniesymetryczna, calkaimuniesymetrycznak, calkaimusymetryczna, calkaimusymetrycznak) i funkcje (trzyrzeczywiste,
+ dwazjedrzecz, czteryrzeczywiste, dwazdwarzecz, czteryzespolone, tuszescian, phiuszescian) do liczenia 
+najrozniejszych calek potrzebnych przy znajdowaniu trajektorii. Mamy tutaj calki eliptyczne Legendrea 
+(pierwszego, drugiego i trzeciego rodzaju), calki eliptyczne zupelne Legendrea oraz calki Carlsona.
+
+Modul obliczphite (plik phitekoncowe.f95)
+
+Modul obliczmuk (plik mukoncowe.f95)
+
+Modul obliczuk (plik ukoncowe.f95)
