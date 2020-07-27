@@ -22,9 +22,8 @@ procgeo.f95,
 przesuniecia.f95, 
 redshift.f95, 
 ukoncowe.f95, 
-wspl.f95, 
-
-contain plenty of functions, subroutines, declarations of variables.
+wspl.f95 
+ contain plenty of functions, subroutines, declarations of variables.
 
 File "zmienne_i_parametry" contains the whole description of variables (in polish for now).
 
