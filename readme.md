@@ -1,11 +1,11 @@
-Below scripts are written in Fortran 95. While code is used to compute the trajectory of a photon
+Below scripts are written in Fortran 95. This code is used to compute the trajectory of a photon
 in a curved spacetime around Black Holes.
 
-Files main or main_more_flags contain instruction to compile whole code.
+Files main and main_more_flags contain instructions to compile whole code.
 
-File main.f95 is the core of the whole code.
-In this file we may set few grids of parameters (the computation will calculate many trajectories)
-or set parameters for a single trajectory.
+File main.f95 is the core of the code.
+In this file we may set a few grids of parameters (the code will compute many trajectories 
+depend on the grids size) or set parameters for a single trajectory.
 In near future I will create a python file to navigate all options and the whole code will be
 used only to calculate a single trajectory.
 
@@ -23,9 +23,9 @@ przesuniecia.f95,
 redshift.f95, 
 ukoncowe.f95, 
 wspl.f95 
- contain plenty of functions, subroutines, declarations of variables.
+ contain definitions of many functions, subroutines and variables.
 
-File "zmienne_i_parametry" contains the whole description of variables (in polish for now).
+A full explanation of all significant variables is included in file "zmienne_i_parametry" (in Polish for now).
 
-File "moduly" contains the descriptions of particular files (in polish for now). The description
-for last 3 files will appear soon.
+File "moduly" contains the full explanation of functions and/or subroutines in particular files (in Polish for now). 
+The description for last 3 files will appear soon.
