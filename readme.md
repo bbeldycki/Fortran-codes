@@ -5,7 +5,7 @@ Files main and main_more_flags contain instructions to compile whole code.
 
 File main.f95 is the core of the code.
 In this file we may set a few grids of parameters (the code will compute many trajectories 
-depend on the grids size) or set parameters for a single trajectory.
+depending on the grids size) or set parameters for a single trajectory.
 In near future I will create a python file to navigate all options and the whole code will be
 used only to calculate a single trajectory.
 
